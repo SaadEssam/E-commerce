@@ -30,7 +30,7 @@ class Product(models.Model):
   category = TreeManyToManyField(Category)
   is_active = models.BooleanField(unique=False, null=False, blank=False, default=True, verbose_name=_("product visibility"), help_text=_("format: true=product visibility"))
   created_at = models.DateTimeField(auto_now_add=True, editable=True, verbose_name=_("data product created"), help_text=_("format: Y-m-d H:M:S"))
-  updated_at = models.DateTimeField(auto_now=True verbose_name=_("data product last updated"), help_text=_("format: Y-m-d H:M:S"))
+  updated_at = models.DateTimeField(auto_now=True, verbose_name=_("data product last updated"), help_text=_("format: Y-m-d H:M:S"))
   
   def __str__(self):
     return self.name
