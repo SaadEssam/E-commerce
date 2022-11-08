@@ -20,3 +20,17 @@ class Category(MPTTModel):
     
   def __str__(self):
     return self.name
+
+
+class Product(models.Model):
+  web_id = models.CharField(max_length=50, unique=True, null=False, blank=False, verbose_name=_("product website ID"), help_text=_("format: required, unique"))
+  slug = models.SlugField(max_length=255, unique=False, null=False, blank=False, verbose_name=_("product safe url"), help_text=_("format: required, letters, numbers, underscores of hyphens"))
+  name = models.CharField(max_length=255, null=False, unique=False, blank=False, verbose_name=_("product name"), help_text=_("format: required, max-255"))
+  description = models.TextField(unique=False, null=False, blank=False, verbose_name=_("product description"), help_test=_("format: required"))
+  category = TreeManyToManyField(Category)
+  is_active = models.BooleanField(unique=False, null=False, blank=False, default=True, verbose_name=_("product visibility"), help_text=_("format: true=product visibility"))
+  created_at = models.DateTimeField(auto_now_add=True, editable=True, verbose_name=_("data product created"), help_text=_("format: Y-m-d H:M:S"))
+  updated_at = models.DateTimeField(auto_now=True verbose_name=_("data product last updated"), help_text=_("format: Y-m-d H:M:S"))
+  
+  def __str__(self):
+    return self.name
